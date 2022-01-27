@@ -1,5 +1,5 @@
-import React from "react";
 import { Form, Input, Checkbox, Button } from "antd";
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -7,14 +7,6 @@ import styles from "./index.module.less";
 
 export default function Login() {
   const navigate = useNavigate();
-
-  const layout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
-  };
-  const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 },
-  };
 
   const onFinish = (values: any) => {
     axios
@@ -32,8 +24,7 @@ export default function Login() {
         //   alert(response.data.data.dispaly_name);
         // } else {
         //   alert(response.data.msg);
-        alert("登录成功");
-        navigate("/layouts");
+        navigate("/");
         // }
       })
       .catch(function (error) {
@@ -46,41 +37,43 @@ export default function Login() {
   };
   return (
     <div className={styles.login}>
-      <div className={styles.box}>
-        <div className={styles.box1}>
+      <div className={styles['login-box']}>
+        <div className={styles['login-box-main']}>
+          <p className={styles['login-box-main-p']}>Sign in</p>
           <Form
-            {...layout}
             name="login"
+            className={styles['login-form']}
             initialValues={{ remember: true }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
-            autoComplete="off"
           >
             <Form.Item
-              label="Username"
               name="username"
               rules={[
                 { required: true, message: "Please input your username!" },
               ]}
             >
-              <Input className={styles.input}/>
+              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
             </Form.Item>
             <Form.Item
-              label="Password"
               name="password"
               rules={[
                 { required: true, message: "Please input your password!" },
               ]}
             >
-              <Input.Password />
+              <Input
+                prefix={<LockOutlined className="site-form-item-icon" />}
+                type="password"
+                placeholder="Password"
+              />
             </Form.Item>
-            <Form.Item name="remember" valuePropName="checked" {...tailLayout}>
+            <Form.Item name="remember" valuePropName="checked" >
               <Checkbox>Remember me</Checkbox>
             </Form.Item>
 
-            <Form.Item {...tailLayout}>
-              <Button type="primary" htmlType="submit">
-                Submit
+            <Form.Item>
+              <Button type="primary" htmlType="submit" className={styles['login-form-button']}>
+                Log in
               </Button>
             </Form.Item>
           </Form>
