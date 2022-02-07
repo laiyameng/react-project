@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import {  useHistory,useLocation } from "react-router-dom";
+import {  useHistory } from "react-router-dom";
 import {
     DesktopOutlined,
     PieChartOutlined,
@@ -55,12 +55,14 @@ export default () => {
                     title: '统计一',
                     path: '/statis/one',
                     key: '/statis/one',
+                    icon: PieChartOutlined,
                     children: [],
                 },
                 {
                     title: '统计二',
                     path: '/statis/two',
                     key: '/statis/two',
+                    icon: PieChartOutlined,
                     children: [],
                 }
             ]
@@ -122,7 +124,7 @@ export default () => {
                 {menuList.map((item) => item.isSubmenu ? (
                     <SubMenu key={item.key} icon={<item.icon />} title={item.title}>
                         {item.children !== undefined && item.children.map((child) =>
-                            <Menu.Item key={child.key} onClick={() => clickMenuItem(child)}>
+                            <Menu.Item key={child.key} icon={<child.icon />} onClick={() => clickMenuItem(child)}>
                                 {child.title}
                             </Menu.Item>
                         )}

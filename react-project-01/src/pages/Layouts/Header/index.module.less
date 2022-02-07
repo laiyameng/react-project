@@ -1,4 +1,37 @@
-.background{
-    background-color: #fff !important;
-    padding: 0 !important
+.background {
+  background-color: #fff !important;
+  padding: 0 !important;
+}
+.header {
+  margin: 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  &-name {
+    font-size: 16px;
+    color: #58667a;
+  }
+  &-user{
+    li {
+      list-style: none;
+      height: 24px;
+      width: 100px;
+      margin-bottom: 5px;
+      line-height: 24px;
+      padding-left: 20px;
+      font-size: 14px;
+    }
+    li:hover {
+      background-color: #a7dcf78e;
+      color: #2c96ec;
+      cursor: pointer;
+    }
+  }
+}
+.line {
+  line-height: 22px;
+  border-left: 1px solid #d8dde7;
+  margin-left: 12px;
+  padding-left: 10px;
+  vertical-align: middle;
 }
