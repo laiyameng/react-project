@@ -1,11 +1,11 @@
 import React from 'react';
 import { Result, Button } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 export default () => {
-  const navigate = useNavigate();
+  const history = useHistory();
   const backHome = () => {
-    navigate('/home');
+    history.push('/home');
   };
   return (
     <Result

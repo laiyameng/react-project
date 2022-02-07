@@ -7,8 +7,7 @@ import styles from './index.module.less';
 
 const { Footer} = Layout;
 
-export default () => {
-  return (
+export default () => (
     <Layout style={{ minHeight: '100vh' }}>
       <SiderMenu />
       <Layout className={styles.site}>
@@ -19,5 +18,4 @@ export default () => {
         <Footer style={{ textAlign: 'center' }}>Web Design ©2022 Created by Timo</Footer>
       </Layout>
     </Layout>
-  );
-}
+)

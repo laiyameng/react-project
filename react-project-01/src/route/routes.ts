@@ -5,15 +5,15 @@ import Error404Page from '../pages/errorPages/404_page';
 const routes: object = [
     {
         path: '/home',
-        element: Home
+        component: Home
     },
     {
         path: '/customer',
-        element: Customer
+        component: Customer
     },
     {
-        path: '*',
-        element: Error404Page
+        path: '/404',
+        component: Error404Page
     }
 ]
 

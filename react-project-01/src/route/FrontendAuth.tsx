@@ -1,5 +1,5 @@
-import { AnyARecord } from 'dns';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
+import Home from "../pages/Home";
 
 export default (props: any) => {
     const { routerConfig, location } = props;
@@ -7,14 +7,15 @@ export default (props: any) => {
     const targetRouter = routerConfig.find(
         (item: any) => pathname.indexOf(item.path) !== -1,
     );
-    const element: string = targetRouter.element
-    const path: string = targetRouter.path
-
+    if (pathname === '/') {
+        return (
+            <Route path="/" component={Home} />
+        )
+    }
     if (targetRouter) {
         return (
-            <Route path={path} element={element} />
+            <Route path={targetRouter.path} component={targetRouter.component} />
         );
     }
-  return <Route path="/login" />;
-
+    return <Redirect to="/404" />;
 };

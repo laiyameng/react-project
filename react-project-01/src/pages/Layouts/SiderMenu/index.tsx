@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import {  useHistory,useLocation } from "react-router-dom";
 import {
     DesktopOutlined,
     PieChartOutlined,
@@ -15,6 +15,7 @@ const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 export default () => {
+    const rootSubmenuKeys = ['/home', '/'];
     interface menuListParam {
         title: string;
         path?: string;
@@ -67,14 +68,34 @@ export default () => {
     ]
 
     const [collapsed, setCollapsed] = useState(false);
-    const navigate = useNavigate();
-    // useEffect(()=>{
-    //     menuList.forEach(item => {
-    //         console.log(item)
+    // const [selectedName, setSelectedName] = useState("");
+    // const [openKeys, setOpenKeys] = useState([]);
+    // const onOpenChange = (keys:any) => {
+    //     const latestOpenKey = keys.find((key:any) => openKeys.indexOf(key as never) === -1);
+    //     if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+    //         setOpenKeys(keys);
+    //     } else {
+    //         setOpenKeys(latestOpenKey as never ? [latestOpenKey] as never : []);
+    //     }
+    // };
+
+    const history = useHistory();
+    // 刷新页面，选中导航菜单项
+    // const location = useLocation();
+    // useEffect(() => {
+    //     menuList.forEach((item) => {
+    //         if (location.pathname.match(item.key)) {
+    //             // SubMenu 菜单项情况
+    //             if (item.children) {
+    //                 setOpenKeys([item.key] as never);
+    //             }
+    //             setSelectedName(location.pathname);
+    //         }
     //     });
-    // })
-    const clickMenuItem = (value:any) => {
-        navigate(value.path)
+    // }, [location.pathname]);
+
+    const clickMenuItem = (value: any) => {
+        history.push(value.path)
     }
 
     const onCollapse = () => {
@@ -91,7 +112,13 @@ export default () => {
                     <img src={Logo} alt="Logo" />
                 </div>)
             }
-            <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+                {/* openKeys={openKeys}
+                onOpenChange={onOpenChange}
+                selectedKeys={[selectedName]} */}
+            <Menu
+                theme="dark"
+                defaultSelectedKeys={['1']}
+                mode="inline" >
                 {menuList.map((item) => item.isSubmenu ? (
                     <SubMenu key={item.key} icon={<item.icon />} title={item.title}>
                         {item.children !== undefined && item.children.map((child) =>

@@ -1,12 +1,12 @@
 import { Form, Input, Checkbox, Button } from "antd";
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import styles from "./index.module.less";
 
 export default function Login() {
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const onFinish = (values: any) => {
     axios
@@ -24,7 +24,7 @@ export default function Login() {
         //   alert(response.data.data.dispaly_name);
         // } else {
         //   alert(response.data.msg);
-        navigate("/");
+        history.push("/");
         // }
       })
       .catch(function (error) {

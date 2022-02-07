@@ -1,6 +1,5 @@
 import {
-  BrowserRouter as Router,
-  Routes,
+  Switch,
   Route,
 } from "react-router-dom";
 
@@ -11,16 +10,10 @@ import "./styles/index.less"
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Layouts />} />
-        {/* <Route path="/home" element={<Home />} />
-        <Route path="/customer" element={<Customer />} />
-        <Route path="*" element={<Error404Page />} /> */}
-        {/* <Route path="*" element={<Navigate to="/login" />} /> */}
-      </Routes>
-    </Router>
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route path="/" component={Layouts} />
+      </Switch>
   );
 }
 
